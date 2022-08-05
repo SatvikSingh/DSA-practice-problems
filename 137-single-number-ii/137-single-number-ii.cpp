@@ -1,18 +1,23 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        map<int, int> map;
-        int n = nums.size();
+        int n = nums.size(), count = 0;
         
-        for (int i = 0; i < n; i++) {
-            map[nums[i]]++;
+        sort(nums.begin(), nums.end());
+        
+        for (int i = 0; i < n-1; i++) {
+            if (nums[i] == nums[i+1]) {
+                count++;
+            }
+            else {
+                int temp = count;
+                if (temp == 0) {
+                    return nums[i];
+                }
+                count = 0;
+            }
         }
         
-        for (auto i : map) {
-            if (i.second == 1)
-                return i.first;
-        }
-        
-        return 0;
+        return nums.back();
     }
 };
