@@ -1,16 +1,12 @@
 class Solution {
 public:
-    int helper(int n, int k) {
-        if (n == 1) {
-            return 0;
+    int findTheWinner(int n, int k) {
+        int ans = 0;
+        
+        for (int i = 1; i <= n; i++) {
+            ans = (ans+k) % i;
         }
         
-        int ans = 0;
-        ans = (helper(n-1, k)+k) % n;
-        return ans;
-    }
-    
-    int findTheWinner(int n, int k) {
-        return helper(n, k) + 1;
+        return ans+1;
     }
 };
