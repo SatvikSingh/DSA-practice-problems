@@ -9,10 +9,11 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+typedef long long ll;
 class Solution {
 public:
     int widthOfBinaryTree(TreeNode* root) {
-        int ans = 0;
+        long long ans = 0;
         queue<pair<TreeNode*, long long>> q;
         
         if (!root)
@@ -22,25 +23,27 @@ public:
         
         while (!q.empty()) {
             int cur_min = q.front().second;
-            int n = q.size(), left, right;
+            long long n = q.size(), left, right;
             
-            for (int i = 0; i < n; i++) {
+            for (long long i = 0; i < n; i++) {
                 TreeNode* node = q.front().first;
                 long long idx = q.front().second - cur_min;
                 q.pop();
                 
                 if (i == 0)
                     left = idx;
-                if (i == n-1)
+                if (i == n-1ll)
                     right = idx;
                 
+                ll temp = 2ll*idx;
+                
                 if (node->left)
-                    q.push({node->left, 2*idx+1});
+                    q.push({node->left, temp+1ll});
                 if (node->right)
-                    q.push({node->right, 2*idx+2});
+                    q.push({node->right, temp+2ll});
             }
             
-            ans = max(ans, right-left+1);
+            ans = max(ans, right-left+1ll);
         }
         
         return ans;
