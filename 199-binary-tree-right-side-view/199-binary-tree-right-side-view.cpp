@@ -11,22 +11,22 @@
  */
 class Solution {
 public:
-    vector<int> helper(TreeNode* root, vector<int> &ans, int h) {
-        if (root == NULL)
-            return ans;
+    void dfs(TreeNode* root, vector<int>& ans, int level) {
+        if (!root)
+            return;
         
-        if (h == ans.size())
+        if (ans.size() == level) {
             ans.push_back(root->val);
+        }
         
-        ans = helper(root->right, ans, h+1);
-        ans = helper(root->left, ans, h+1);
-        
-        return ans;
+        dfs(root->right, ans, level+1);
+        dfs(root->left, ans, level+1);
     }
     
     vector<int> rightSideView(TreeNode* root) {
-        vector<int> ans;
-        ans = helper(root, ans, 0);
+        vector<int> ans;    
+        dfs(root, ans, 0);
+        
         return ans;
     }
 };
