@@ -12,32 +12,31 @@
 class Solution {
 public:
     int i = 0;
-    vector<int> temp;
+    TreeNode *first, *last, *prev;
     
     void dfs(TreeNode* root) {
         if (!root)
             return;
         
         dfs(root->left);
-        temp.push_back(root->val);
+        if (prev and root->val < prev->val) {
+            if (!first) {
+                first = prev;
+                last = root;
+            }
+            else {
+                last = root;
+            }
+        }
+        prev = root;
         dfs(root->right);
-    }
-    
-    void helper(TreeNode* root) {
-        if (!root)
-            return;
-        
-        helper(root->left);
-        if (temp[i] != root->val)
-            swap(temp[i], root->val);
-        i++;
-        helper(root->right);
     }
     
     void recoverTree(TreeNode* root) {
         dfs(root);
-        sort(temp.begin(), temp.end());
-        helper(root);
+        swap(first->val, last->val);
+        // sort(temp.begin(), temp.end());
+        // helper(root);
         
         // for (auto i : temp) {
         //     cout << i << " ";
