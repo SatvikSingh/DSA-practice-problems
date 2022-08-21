@@ -11,11 +11,19 @@
  */
 class Solution {
 public:
+    int helper(TreeNode* root) {
+        if (!root)
+            return 0;
+        
+        return (1 + max(helper(root->left), helper(root->right)));
+    }
+    
     vector<vector<int>> levelOrderBottom(TreeNode* root) {
         if (!root)
             return {};
         
-        vector<vector<int>> ans;
+        int h = helper(root);
+        vector<vector<int>> ans(h);
         queue<TreeNode*> q;
         
         q.push(root);
@@ -36,11 +44,12 @@ public:
                     q.push(node->right);
             }
             
-            ans.push_back(temp);
+            ans[h-1] = temp;
+            h--;
             temp.clear();
         }
         
-        reverse(ans.begin(), ans.end());
+        // reverse(ans.begin(), ans.end());
         return ans;
     }
 };
