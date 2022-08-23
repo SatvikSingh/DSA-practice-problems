@@ -15,7 +15,7 @@ public:
                 temp += i + 'a';
             }
             
-            cout << temp << endl;
+            // cout << temp << endl;
             
             map[temp].push_back(s);
             temp.clear();
