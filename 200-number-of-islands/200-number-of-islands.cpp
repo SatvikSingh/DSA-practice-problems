@@ -1,30 +1,26 @@
 class Solution {
 public:
-    void helper(vector<vector<char>>& grid, int i, int j, int n, int m) {
-        if (i < 0 or j < 0 or i >= n or j >= m) {
-            return;
-        }    
-        
-        if (grid[i][j] == '0')
+    void dfs(vector<vector<char>>& grid, int row, int col, int n, int m) {
+        if (row < 0 or col < 0 or row >= n or col >= m or grid[row][col] == '0')
             return;
         
-        grid[i][j] = '0';
+        grid[row][col] = '0';
         
-        helper(grid, i-1, j, n, m);
-        helper(grid, i+1, j, n, m);
-        helper(grid, i, j-1, n, m);
-        helper(grid, i, j+1, n, m);
+        dfs(grid, row+1, col, n, m);
+        dfs(grid, row-1, col, n, m);
+        dfs(grid, row, col+1, n, m);
+        dfs(grid, row, col-1, n, m);
     }
-    
+
     int numIslands(vector<vector<char>>& grid) {
         int n = grid.size(), m = grid[0].size();
         int count = 0;
         
         for (int i = 0; i < n; i++) {
-            for (int j= 0; j < m; j++) {
+            for (int j = 0; j < m; j++) {
                 if (grid[i][j] == '1') {
                     count++;
-                    helper(grid, i, j, n, m);
+                    dfs(grid, i, j, n, m);
                 }
             }
         }
