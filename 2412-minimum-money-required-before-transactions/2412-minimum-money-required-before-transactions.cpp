@@ -2,20 +2,20 @@ class Solution {
 public:
     typedef long long ll;
     
-    static bool compare(vector<ll>& a, vector<ll>& b) {
-        if (a[1] == b[1])
-            return a[0] > b[0];
+    static bool compare(pair<ll, ll>& a, pair<ll, ll>& b) {
+        if (a.second == b.second)
+            return a.first > b.first;
         
-        return a[1] < b[1];
+        return a.second < b.second;
     }
     
-    static bool compare_desc(vector<ll>& a, vector<ll>& b) {
-        return a[0] > b[0];
+    static bool compare_desc(pair<ll, ll>& a, pair<ll, ll>& b) {
+        return a.first > b.first;
     }
     
     long long minimumMoney(vector<vector<int>>& transactions) {
         ll ans = 0, n = transactions.size();
-        vector<vector<ll>> arr1, arr2;
+        vector<pair<ll, ll>> arr1, arr2;
         
         if (n == 1) {
             return transactions[0][0];
@@ -36,16 +36,14 @@ public:
         sort(arr1.begin(), arr1.end(), compare_desc);
         sort(arr2.begin(), arr2.end(), compare);
         
-        // cout << arr2.size() << endl;
-        
         for (auto i : arr1) {
-            arr2.push_back({i[0], i[1]});
+            arr2.push_back({i.first, i.second});
         }
         
-        ans = arr2[0][0];
+        ans = arr2[0].first;
         
         for (int i = 0; i < arr2.size()-1; i++) {
-            ll temp = arr2[i+1][0] - arr2[i][1];
+            ll temp = arr2[i+1].first - arr2[i].second;
             
             if (temp > 0)
                 ans += temp;
