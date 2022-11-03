@@ -7,7 +7,7 @@
 <p>A <strong>palindrome</strong> is a string that reads the same forward and backward.</p>
 
 <p>&nbsp;</p>
-<p><strong>Example 1:</strong></p>
+<p><strong class="example">Example 1:</strong></p>
 
 <pre><strong>Input:</strong> words = ["lc","cl","gg"]
 <strong>Output:</strong> 6
@@ -15,7 +15,7 @@
 Note that "clgglc" is another longest palindrome that can be created.
 </pre>
 
-<p><strong>Example 2:</strong></p>
+<p><strong class="example">Example 2:</strong></p>
 
 <pre><strong>Input:</strong> words = ["ab","ty","yt","lc","cl","ab"]
 <strong>Output:</strong> 8
@@ -23,7 +23,7 @@ Note that "clgglc" is another longest palindrome that can be created.
 Note that "lcyttycl" is another longest palindrome that can be created.
 </pre>
 
-<p><strong>Example 3:</strong></p>
+<p><strong class="example">Example 3:</strong></p>
 
 <pre><strong>Input:</strong> words = ["cc","ll","xx"]
 <strong>Output:</strong> 2
